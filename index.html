@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to eServices</title>
+  <style>
+    :root {
+      --navy: #0b1f3a;
+      --navy-dark: #071628;
+      --blue: #1a73e8;
+      --blue-light: #4a90e2;
+      --gold: #d4a017;
+      --gold-bg: #e8b923;
+      --text: #1a2a3a;
+      --text-muted: #4a5a6a;
+      --light-bg: #f0f4f8;
+      --white: #ffffff;
+      --border: #d0d8e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background: var(--white);
+    }
+
+    /* Header */
+    header {
+      background: var(--navy);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .logo img {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    .lang-switch span {
+      cursor: pointer;
+      padding: 2px 4px;
+    }
+    .lang-switch span.active {
+      font-weight: 700;
+      border-bottom: 2px solid white;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: white;
+      border: 1px solid transparent;
+    }
+    .btn-primary:hover {
+      background: var(--navy-dark);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--blue);
+      border: 1px solid var(--blue);
+    }
+    .btn-outline:hover {
+      background: #e8f0fe;
+    }
+
+    .btn-blue {
+      background: var(--blue);
+      color: white;
+    }
+    .btn-blue:hover {
+      background: #1557b0;
+    }
+
+    .btn-login-header {
+      background: white;
+      color: var(--navy);
+      padding: 8px 20px;
+      font-size: 14px;
+    }
+    .btn-login-header:hover {
+      background: #f0f4f8;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 420px;
+      background: linear-gradient(105deg, rgba(11,31,58,0.75) 0%, rgba(11,31,58,0.45) 100%),
+                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='420' viewBox='0 0 1200 420'%3E%3Crect fill='%232a3a4a' width='1200' height='420'/%3E%3Ccircle cx='900' cy='200' r='180' fill='%233a4a5a' opacity='0.4'/%3E%3Crect x='50' y='80' width='280' height='180' rx='8' fill='%231a2a3a' opacity='0.6'/%3E%3Crect x='70' y='100' width='240' height='140' rx='4' fill='%234a90e2' opacity='0.3'/%3E%3C/svg%3E") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 0 24px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 18px;
+      opacity: 0.95;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* Main content */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 24px 40px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 40px;
+      line-height: 1.25;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 48px;
+      margin-bottom: 64px;
+      align-items: start;
+    }
+
+    .service-card {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #90caf9;
+      border-radius: 2px;
+    }
+
+    .service-card.companies::before {
+      background: var(--blue);
+    }
+
+    .service-card h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .service-actions {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .link-blue {
+      color: var(--blue);
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .link-blue:hover {
+      text-decoration: underline;
+    }
+
+    /* Yellow callout */
+    .callout {
+      background: var(--gold-bg);
+      border-radius: 8px;
+      padding: 48px 40px;
+      text-align: center;
+      margin: 48px 0 56px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .callout h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .callout p {
+      color: var(--navy);
+      opacity: 0.9;
+      margin-bottom: 28px;
+      font-size: 16px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Support section */
+    .support {
+      background: var(--light-bg);
+      padding: 56px 24px;
+      margin-top: 20px;
+    }
+
+    .support-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .support h2 {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--blue-light);
+    }
+
+    .support p {
+      color: var(--text);
+      max-width: 420px;
+      font-size: 16px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 32px 24px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .coat-of-arms {
+      width: 48px;
+      height: auto;
+      display: block;
+    }
+
+    .footer-brand-text h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .footer-brand-text p {
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .footer-links {
+      font-size: 13px;
+      opacity: 0.85;
+      line-height: 1.8;
+    }
+    .footer-links a {
+      color: #90caf9;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 24px auto 0;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      opacity: 0.7;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .back-to-top {
+      color: #90caf9;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .back-to-top:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .hero { height: 340px; }
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .section-title { font-size: 26px; }
+      .callout { padding: 36px 24px; }
+      .support-inner { flex-direction: column; align-items: flex-start; }
+      .header-top { padding: 0 16px; }
+      .lang-switch { display: none; }
+    }
+  </style>
+</head>
+<body>
+<!-- Header -->
+  <header>
+    <div class="header-top">
+      <a href="index.html" class="logo">
+        <img src="welcome-logo.svg" alt="Welcome to Serbia" />
+      </a>
+      <div class="header-actions">
+        <div class="lang-switch">
+          <span>ЋИР</span>
+          <span>LAT</span>
+          <span class="active">ENG</span>
+          <span>🌐</span>
+        </div>
+        <a href="login.html" class="btn btn-login-header">Log in</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to eServices</h1>
+      <p>Here you can use electronic services of diplomatic and consular offices and other competent authorities of the Republic of Serbia.</p>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main>
+    <h2 class="section-title">All eServices<br>in one place</h2>
+
+    <div class="services-grid">
+      <!-- Foreign citizens -->
+      <div class="service-card">
+        <h2>For foreign citizens</h2>
+        <p>Apply for visa C, visa D or temporary residence approval in Republic of Serbia.</p>
+        <p>List of available services will be presented after you login.</p>
+        <div class="service-actions">
+          <a href="login.html" class="btn btn-primary">Login</a>
+          <a href="login.html" class="link-blue">Register an account</a>
+        </div>
+      </div>
+
+      <!-- Companies -->
+      <div class="service-card companies">
+        <h2>For companies in Republic of Serbia</h2>
+        <p>Apply if you wish to employe one or more foreign citizens.</p>
+        <p>eServices available for companies are group visa D and group temporary residence,</p>
+        <p>and unified permit for temporary residence and work.</p>
+        <p>To access eServices register on eGovernment Portal.</p>
+        <div class="service-actions">
+          <a href="https://euprava.gov.rs/" target="_blank" rel="noopener" class="btn btn-blue">Open eGovernment Portal</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Yellow callout -->
+    <div class="callout">
+      <h2>Did you find the service<br>you are looking for?</h2>
+      <p>Learn more about the visa regime. Find more information, instructions and documentation needed on Entry &amp; Stay Regulations.</p>
+      <a href="https://welcometoserbia.gov.rs" target="_blank" rel="noopener" class="btn btn-primary">Entry &amp; Stay Regulations</a>
+    </div>
+  </main>
+
+  <!-- Support -->
+  <section class="support">
+    <div class="support-inner">
+      <h2>Support</h2>
+      <div>
+        <p>If you have additional questions about the visa regime, permits and electronic services, please contact us:</p>
+        <div style="margin-top: 16px;">
+          <a href="mailto:office@ite.gov.rs" class="btn btn-primary">Contact</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="coat-of-arms.png" alt="Coat of Arms of Serbia" class="coat-of-arms" />
+        <div class="footer-brand-text">
+          <h3>welcometoserbia.gov.rs</h3>
+          <p>Welcome to Serbia</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        Web presentation is licensed according to license conditions<br>
+        <a href="#">Creative Commons</a> Authorship-Non-commercial-Without processing 3.0 Serbia.<br>
+        Web project <a href="https://ite.gov.rs" target="_blank" rel="noopener">ite.gov.rs</a><br>
+        <a href="#">Privacy Policy and terms of Use</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© Welcome to Serbia — Republic of Serbia</span>
+      <a href="#" class="back-to-top">Top of the page ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelector('.back-to-top').addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
