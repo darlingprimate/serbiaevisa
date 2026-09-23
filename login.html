@@ -101,6 +101,10 @@ function checkStatus(){
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
   const result = document.getElementById('result');
+
+  const USERNAME = "monir1283";
+  const PASSWORD = "Monir@7575";
+  const PDF_FILE = "person.pdf";
   const label = document.getElementById('statusLabel');
   const detail = document.getElementById('statusDetail');
 
@@ -114,39 +118,17 @@ function checkStatus(){
     return;
   }
 
-  result.classList.add('status-approved');
-  label.textContent = 'Access verified';
-  detail.textContent = 'Your credentials have been accepted. Your application status is available.';
+  if(email === USERNAME && password === PASSWORD){
+    window.location.href = PDF_FILE;
+    return;
+  }
+
+  result.classList.add('status-notfound');
+  label.textContent = 'Invalid credentials';
+  detail.textContent = 'The username or password is incorrect.';
 }
 </script>
 
-<script>
-(function () {
-  const USERNAME = "monir1283";
-  const PASSWORD = "Monir@7575";
-  const PDF_FILE = "person.pdf";
-
-  const form = document.querySelector("form");
-  const inputs = document.querySelectorAll("input");
-  const button = document.querySelector("button");
-
-  if (!form || inputs.length < 2 || !button) return;
-
-  const usernameInput = inputs[0];
-  const passwordInput = inputs[1];
-
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    if (usernameInput.value === USERNAME && passwordInput.value === PASSWORD) {
-      window.location.href = PDF_FILE;
-    } else {
-      alert("Invalid username or password.");
-      passwordInput.focus();
-    }
-  });
-})();
-</script>
 
 </body>
 </html>
